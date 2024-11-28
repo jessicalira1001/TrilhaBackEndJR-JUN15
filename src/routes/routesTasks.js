@@ -1,9 +1,12 @@
 const express = require("express");
 
-const routesTasks = express.Router();
+const {listTasks} = require('../controllers/tasks');
+
+
+const routesTasks = express();
 
 routesTasks.post("/tasks");
-routesTasks.get("/tasks");
+routesTasks.get("/tasks", listTasks);
 routesTasks.put("/tasks/:id?");
 routesTasks.delete("/tasks:id?");
 
