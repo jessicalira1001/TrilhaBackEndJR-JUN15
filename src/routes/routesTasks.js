@@ -1,6 +1,6 @@
 const express = require("express");
 
-const {listTasks} = require('../controllers/tasks');
+const {listTasks} = require('../controllers/tasksController');
 
 
 const routesTasks = express();
