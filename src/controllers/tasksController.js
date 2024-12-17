@@ -1,4 +1,3 @@
-//const bancoDeDados = require("../bancoDeDadosTeste");
 const tasksModel = require("../models/tasksModel");
 
 
@@ -7,16 +6,14 @@ const listTasks = (req, res) => {
     res.json(tasks);
 }
 
-
-
-/** 
-const createTask = (req, res) => {
-
+const addTasks = (req, res) => {
+    const { title } = req.body;
+    const newTask = tasksModel.createTask(title);
+    res.status(201).json(newTask);
 }
-*/
-
 
 
 module.exports = {
-    listTasks
+    listTasks,
+    addTasks
 }

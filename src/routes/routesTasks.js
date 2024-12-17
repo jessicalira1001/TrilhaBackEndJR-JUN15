@@ -1,11 +1,11 @@
 const express = require("express");
 
-const {listTasks} = require('../controllers/tasksController');
+const {listTasks, addTasks} = require('../controllers/tasksController');
 
 
 const routesTasks = express();
 
-routesTasks.post("/tasks");
+routesTasks.post("/tasks", addTasks);
 routesTasks.get("/tasks", listTasks);
 routesTasks.put("/tasks/:id?");
 routesTasks.delete("/tasks:id?");
