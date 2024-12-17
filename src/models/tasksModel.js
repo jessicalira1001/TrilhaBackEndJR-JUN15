@@ -10,8 +10,13 @@ const createTask = (title) => {
     return newTask;
 }
 
+const deleteTask = (id) => {
+    bancoDeDados.tasksBD = bancoDeDados.tasksBD.filter (task => task.id !== id);
+}
+
 
 module.exports = {
     getTasks,
-    createTask
+    createTask,
+    deleteTask
 }

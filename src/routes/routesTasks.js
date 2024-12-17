@@ -1,6 +1,6 @@
 const express = require("express");
 
-const {listTasks, addTasks} = require('../controllers/tasksController');
+const {listTasks, addTasks, deleteTask} = require('../controllers/tasksController');
 
 
 const routesTasks = express();
@@ -8,7 +8,7 @@ const routesTasks = express();
 routesTasks.post("/tasks", addTasks);
 routesTasks.get("/tasks", listTasks);
 routesTasks.put("/tasks/:id?");
-routesTasks.delete("/tasks:id?");
+routesTasks.delete("/tasks/:id?", deleteTask);
 
 
 module.exports = routesTasks;
