@@ -1,28 +1,25 @@
-const bancoDeDados = require("../bancoDeDadosTeste");
+import { openDb } from '../database/configDB.js';
 
-const getTasks = () =>{
-    return bancoDeDados.tasksBD;
-}
+export async function createTableTasks () {
+    openDb().then(db =>{
+        db.exec(`CREATE TABLE IF NOT EXISTS tasks ( id INTEGER PRIMARY KEY AUTOINCREMENT, descricao TEXT NOT NULL )`);
+    })
+};
 
-const createTask = (title) => {
-    const newTask = { id: bancoDeDados.tasksBD.length, descricao: title};
-    bancoDeDados.tasksBD.push(newTask);
-    return newTask;
-}
+export async function insertTask (descricao) {
+    openDb().then(db =>{
+        db.run('INSERT INTO tasks (descricao) VALUES (?)', [descricao]);
+    })
+};
 
-const deleteTask = (id) => {
-    bancoDeDados.tasksBD = bancoDeDados.tasksBD.filter (task => task.id !== id);
-}
+export async function updateTask (descricao, id) {
+    openDb().then(db =>{
+        db.run('UPDATE tasks SET descricao=? WHERE id=?', [descricao, id]);
+    })
+};
 
-const updateTask = (id, novaDescricao) => {
-    bancoDeDados.tasksBD = bancoDeDados.tasksBD
-    .map(task => task.id === id ? { ...task, descricao: novaDescricao } : task );
-}
-
-
-module.exports = {
-    getTasks,
-    createTask,
-    deleteTask,
-    updateTask
-}
+export async function deleteTask (id) {
+    openDb().then(db =>{
+        db.run('DELETE FROM tasks WHERE id=?', [id]);
+    })
+};

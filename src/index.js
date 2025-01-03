@@ -1,12 +1,11 @@
-import { openDb } from './database/configDB.js';
-
+import { createTableTasks} from './models/tasksModel.js';
 import express from 'express';
+import {rota} from './routes/routesTasks.js';
+
 const app = express();
 const port = 3000;
 
-
-//const routesTasks = require("./routes/routesTasks");
-
+createTableTasks();
 
 app.get('/', (req, res) => {
   res.send('Olá, Pessoas!');
@@ -14,9 +13,7 @@ app.get('/', (req, res) => {
 
 app.use(express.json());
 
-openDb();
-  
-//app.use(routesTasks)
+app.use(rota)
 
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);

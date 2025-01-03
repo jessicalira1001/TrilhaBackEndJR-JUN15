@@ -1,14 +1,14 @@
-const express = require("express");
+import express from "express";
 
-const {listTasks, addTasks, deleteTask, updateTask} = require('../controllers/tasksController');
-
-
-const routesTasks = express();
-
-routesTasks.post("/tasks", addTasks);
-routesTasks.get("/tasks", listTasks);
-routesTasks.put("/tasks/:id?", updateTask);
-routesTasks.delete("/tasks/:id?", deleteTask);
+import addTasks from '../controllers/tasksController.js'
+import atualizaTask from '../controllers/tasksController.js'
+import apagaTask from '../controllers/tasksController.js'
 
 
-module.exports = routesTasks;
+export const rota = express.Router();
+
+rota.post("/tasks", addTasks);
+//rota.get("/tasks", listTasks);
+rota.put("/tasks/:id?", atualizaTask);
+rota.delete("/tasks/:id?", apagaTask);
+

@@ -1,34 +1,24 @@
-const tasksModel = require("../models/tasksModel");
+import { insertTask, updateTask, deleteTask } from "../models/tasksModel.js";
 
-
-const listTasks = (req, res) => {
-    const tasks = tasksModel.getTasks();
-    res.status(200).json(tasks);
-}
 
 const addTasks = (req, res) => {
-    const { title } = req.body;
-    const newTask = tasksModel.createTask(title);
-    res.status(201).json(newTask);
+    const { descricao } = req.body;
+    const newTask = insertTask(descricao); 
+    return res.status(201).json(newTask);
 }
 
-const deleteTask = (req, res) => {
-    const {id} = req.params;
-    tasksModel.deleteTask(parseInt(id));
-    res.status(200).json({ message: 'Tarefa deletada!'});
+const atualizaTask = (req, res) => {
+    const { descricao } = req.body;
+    const { id } = req.params;
+    const newTask = updateTask(descricao, id);
+    return res.status(201).json(newTask);
 }
 
-const updateTask = (req, res) => {
-    const {id} = req.params;
-    const {novaDescricao} = req.body;
-    const updatedTask = tasksModel.updateTask(parseInt(id), novaDescricao);
-    res.status(200).json(updatedTask);
+const apagaTask = (req, res) => {
+    const { id } = req.params;
+    const newTask = deleteTask(id);
+    return res.status(200).json(newTask);
 }
 
 
-module.exports = {
-    listTasks,
-    addTasks,
-    deleteTask,
-    updateTask
-}
+export default (addTasks, atualizaTask, apagaTask);
