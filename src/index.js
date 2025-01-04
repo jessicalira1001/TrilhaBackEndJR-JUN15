@@ -1,4 +1,4 @@
-import { createTableTasks} from './models/tasksModel.js';
+import { createTableTasks} from './models/taskModel.js';
 import express from 'express';
 import {rota} from './routes/routesTasks.js';
 

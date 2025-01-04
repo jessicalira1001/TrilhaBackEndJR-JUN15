@@ -1,4 +1,4 @@
-import { insertTask, updateTask, deleteTask } from "../models/tasksModel.js";
+import { insertTask, updateTask, deleteTask } from "../models/taskModel.js";
 
 
 const addTasks = (req, res) => {
